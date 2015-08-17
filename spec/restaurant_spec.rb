@@ -71,35 +71,8 @@ describe(Restaurant) do
       DB.exec("DELETE FROM restaurants *;")
       another = Restaurant.new({:name => 'Mamma Lucias', :type => 'italian', :phone => '555-5555', :address => 'Olney, MD', :id => nil})
       another.save()
-      Restaurant.delete(another.id().to_i())
+      Restaurant.delete(another.id())
       expect(Restaurant.all()).to(eq([]))
     end
   end
-
-  # describe('#update') do
-  #   it('will change the attributes of the restaurant') do
-  #     test_restaurant2 = Restaurant.new({:name => 'Mamma Lucias', :type => 'italian', :phone => '555-5555', :address => 'Olney, MD', :id => nil})
-  #     test_restaurant2.save()
-  #     test_restaurant2.update({:type => "american"})
-  #     expect(test_restaurant2.type()).to(eq("american"))
-  #   end
-  # end
-  #
-  # describe('#update') do
-  #   it('will change the attributes of the restaurant') do
-  #     test_restaurant2 = Restaurant.new({:name => 'Mamma Lucias', :type => 'italian', :phone => '555-5555', :address => 'Olney, MD', :id => nil})
-  #     test_restaurant2.save()
-  #     test_restaurant2.update({:phone => "333-3333"})
-  #     expect(test_restaurant2.phone()).to(eq("333-3333"))
-  #   end
-  # end
-  #
-  # describe('#update') do
-  #   it('will change the attributes of the restaurant') do
-  #     test_restaurant2 = Restaurant.new({:name => 'Mamma Lucias', :type => 'italian', :phone => '555-5555', :address => 'Olney, MD', :id => nil})
-  #     test_restaurant2.save()
-  #     test_restaurant2.update({:address => "Rockville, MD"})
-  #     expect(test_restaurant2.address()).to(eq("Rockville, MD"))
-  #   end
-  # end
 end

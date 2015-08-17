@@ -81,7 +81,6 @@ class Restaurant
       count -= 1
     end
     order += " WHERE id = #{@id};"
-    puts "#{order}"
     DB.exec(order)
   end
 
@@ -89,22 +88,4 @@ class Restaurant
   define_singleton_method(:delete) do |id_number|
     DB.exec("DELETE FROM restaurants WHERE id = #{id_number}")
   end
-
-  # define_method(:update_type) do |attributes|
-  #   @type = attributes.fetch(:type)
-  #   @id = self.id
-  #   DB.exec("UPDATE restaurants SET type = '#{@type}' WHERE id = #{id};")
-  # end
-  #
-  # define_method(:update_phone) do |attributes|
-  #   @phone = attributes.fetch(:phone)
-  #   @id = self.id
-  #   DB.exec("UPDATE restaurants SET phone = '#{@phone}' WHERE id = #{id};")
-  # end
-  #
-  # define_method(:update_address) do |attributes|
-  #   @address = attributes.fetch(:address)
-  #   @id = self.id
-  #   DB.exec("UPDATE restaurants SET address = '#{@address}' WHERE id = #{id};")
-  # end
 end
