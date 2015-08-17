@@ -1,5 +1,6 @@
 require('spec_helper')
 
+
 describe(Restaurant) do
 
   before { @test_restaurant = Restaurant.new({:name => 'Mamma Lucias', :type => 'italian', :phone => '555-5555', :address => 'Olney, MD', :id => nil})}
@@ -38,7 +39,7 @@ describe(Restaurant) do
     it('returns true if all attributes are equal') do
       test_restaurant1 = Restaurant.new({:name => 'Mamma Lucias', :type => 'italian', :phone => '555-5555', :address => 'Olney, MD', :id => 5})
       test_restaurant2 = Restaurant.new({:name => 'Mamma Lucias', :type => 'italian', :phone => '555-5555', :address => 'Olney, MD', :id => 5})
-      expect(test_restaurant1 == test_restaurant2).to(eq(true))
+      expect(test_restaurant1).to(eq(test_restaurant2))
     end
   end
 
@@ -56,4 +57,40 @@ describe(Restaurant) do
     end
   end
 
+  describe('#update') do
+    it('will change the attributes of the restaurant') do
+      test_restaurant2 = Restaurant.new({:name => 'Mamma Lucias', :type => 'italian', :phone => '555-5555', :address => 'Olney, MD', :id => nil})
+      test_restaurant2.save()
+      test_restaurant2.update({:name => "Papa Lucias", :type => "american", :phone => "333-3333", :address => "Rockville, MD"})
+      expect(test_restaurant2.name()).to(eq("Papa Lucias"))
+    end
+
+  end
+
+  # describe('#update') do
+  #   it('will change the attributes of the restaurant') do
+  #     test_restaurant2 = Restaurant.new({:name => 'Mamma Lucias', :type => 'italian', :phone => '555-5555', :address => 'Olney, MD', :id => nil})
+  #     test_restaurant2.save()
+  #     test_restaurant2.update({:type => "american"})
+  #     expect(test_restaurant2.type()).to(eq("american"))
+  #   end
+  # end
+  #
+  # describe('#update') do
+  #   it('will change the attributes of the restaurant') do
+  #     test_restaurant2 = Restaurant.new({:name => 'Mamma Lucias', :type => 'italian', :phone => '555-5555', :address => 'Olney, MD', :id => nil})
+  #     test_restaurant2.save()
+  #     test_restaurant2.update({:phone => "333-3333"})
+  #     expect(test_restaurant2.phone()).to(eq("333-3333"))
+  #   end
+  # end
+  #
+  # describe('#update') do
+  #   it('will change the attributes of the restaurant') do
+  #     test_restaurant2 = Restaurant.new({:name => 'Mamma Lucias', :type => 'italian', :phone => '555-5555', :address => 'Olney, MD', :id => nil})
+  #     test_restaurant2.save()
+  #     test_restaurant2.update({:address => "Rockville, MD"})
+  #     expect(test_restaurant2.address()).to(eq("Rockville, MD"))
+  #   end
+  # end
 end
