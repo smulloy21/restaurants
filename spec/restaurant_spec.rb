@@ -64,7 +64,16 @@ describe(Restaurant) do
       test_restaurant2.update({:name => "Papa Lucias", :type => "american", :phone => "333-3333", :address => "Rockville, MD"})
       expect(test_restaurant2.name()).to(eq("Papa Lucias"))
     end
+  end
 
+  describe('#delete') do
+    it('will delete the row from the database') do
+      DB.exec("DELETE FROM restaurants *;")
+      another = Restaurant.new({:name => 'Mamma Lucias', :type => 'italian', :phone => '555-5555', :address => 'Olney, MD', :id => nil})
+      another.save()
+      Restaurant.delete(another.id().to_i())
+      expect(Restaurant.all()).to(eq([]))
+    end
   end
 
   # describe('#update') do

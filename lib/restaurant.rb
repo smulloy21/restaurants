@@ -40,25 +40,54 @@ class Restaurant
 
   define_method(:update) do |attributes|
     @id = self.id
+
+    # Possible Refactor:
+    count = attributes.keys.count
     order = "UPDATE restaurants SET "
+    # attributes.each() do |key, value|
+    #   order += " #{key} = '#{value}'"
+    #   count -= 1
+    #   if count > 0
+    #     order += ","
+    #   end
+    # end
     if attributes.include?(:name)
       @name = attributes.fetch(:name)
-      order += "name = '#{@name}', "
+      order += "name = '#{@name}'"
+      count -= 1
+      if count > 0
+        order += ","
+      end
     end
     if attributes.include?(:type)
       @type = attributes.fetch(:type)
-      order += "type = '#{@type}', "
+      order += " type = '#{@type}'"
+      count -= 1
+      if count > 0
+        order += ","
+      end
     end
     if attributes.include?(:phone)
       @phone = attributes.fetch(:phone)
-      order += "phone = '#{@phone}', "
+      order += " phone = '#{@phone}'"
+      count -= 1
+      if count > 0
+        order += ","
+      end
     end
     if attributes.include?(:address)
       @address = attributes.fetch(:address)
-      order += "address = '#{@address}'"
+      order += " address = '#{@address}'"
+      count -= 1
     end
-    order += "WHERE id = #{@id};"
+    order += " WHERE id = #{@id};"
+    puts "#{order}"
     DB.exec(order)
+  end
+
+
+  define_singleton_method(:delete) do |id_number|
+    DB.exec("DELETE FROM restaurants WHERE id = #{id_number}")
   end
 
   # define_method(:update_type) do |attributes|
